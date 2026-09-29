@@ -8,6 +8,8 @@ services:
     image: telemed-ia-front:local
     container_name: telemed-ia-front
     restart: unless-stopped
+    ports:
+      - "4200:80"
     expose:
       - "80"
     networks:
