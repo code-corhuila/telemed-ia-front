@@ -16,7 +16,13 @@ RUN npm run build
 
 # ---------- runtime stage ----------
 FROM nginx:1.27-alpine
-COPY --from=build /workspace/dist/telemed-ia-front /usr/share/nginx/html
+
+# Remove the default nginx index so we can't accidentally serve it.
+RUN rm -f /usr/share/nginx/html/index.html /usr/share/nginx/html/50x.html
+
+# Angular 21 puts the real bundle inside `browser/`.
+COPY --from=build /workspace/dist/telemed-ia-front/browser /usr/share/nginx/html
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
