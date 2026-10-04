@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { routes } from './app.routes';
 
 describe('Front routes', () => {
