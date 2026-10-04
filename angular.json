@@ -30,8 +30,15 @@
             "browser": "src/bootstrap.ts",
             "index": "src/index.html",
             "tsConfig": "tsconfig.app.json",
-            "assets": [{ "glob": "**/*", "input": "public" }],
-            "styles": ["src/styles.css"]
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -48,10 +55,21 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": { "buildTarget": "telemed-ia-front:build:production" },
-            "development": { "buildTarget": "telemed-ia-front:build:development" }
+            "production": {
+              "buildTarget": "telemed-ia-front:build:production"
+            },
+            "development": {
+              "buildTarget": "telemed-ia-front:build:development"
+            }
           },
           "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "buildTarget": "telemed-ia-front:esbuild:development"
+          }
         }
       }
     }
