@@ -19,6 +19,13 @@ export const routes: Routes = [
       ),
     children: [
       {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./dashboard/dashboard-page.component').then(
+            (m) => m.DashboardPageComponent,
+          ),
+      },
+      {
         path: 'patient',
         loadChildren: () =>
           import('./remotes/patient.remote').then(
@@ -35,7 +42,7 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'patient',
+        redirectTo: 'dashboard',
       },
     ],
   },
