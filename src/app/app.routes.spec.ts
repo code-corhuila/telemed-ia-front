@@ -15,4 +15,22 @@ describe('Front routes', () => {
 
     expect(agentRoute).toBeTruthy();
   });
+
+  it('registers the patient dashboard inside the authenticated shell', () => {
+  const shellRoute = routes.find((route) => route.path === '');
+
+  expect(shellRoute).toBeTruthy();
+
+  const dashboardRoute = shellRoute?.children?.find(
+    (route) => route.path === 'dashboard',
+  );
+
+  expect(dashboardRoute).toBeTruthy();
+
+  const defaultRoute = shellRoute?.children?.find(
+    (route) => route.path === '',
+  );
+
+  expect(defaultRoute?.redirectTo).toBe('dashboard');
+});
 });
