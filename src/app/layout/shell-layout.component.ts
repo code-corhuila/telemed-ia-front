@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+
 import { SessionService } from '../core/auth/session.service';
 
 @Component({
@@ -9,20 +10,48 @@ import { SessionService } from '../core/auth/session.service';
   template: `
     <header class="shell-header">
       <span class="brand">TeleMed IA</span>
+
       <nav>
         <a routerLink="/patient">Paciente</a>
+        <a routerLink="/agent">Asistente IA</a>
       </nav>
+
       <button type="button" (click)="signOut()">Salir</button>
     </header>
+
     <main class="shell-main">
       <router-outlet></router-outlet>
     </main>
   `,
   styles: [
-    `.shell-header { display: flex; gap: 1rem; align-items: center; padding: 0.75rem 1rem; background: var(--color-primary); color: white; }
-     .brand { font-weight: 600; }
-     nav a { color: white; text-decoration: none; }
-     .shell-main { padding: 1.5rem; max-width: 960px; margin: 0 auto; }`
+    `.shell-header {
+       display: flex;
+       gap: 1rem;
+       align-items: center;
+       padding: 0.75rem 1rem;
+       background: var(--color-primary);
+       color: white;
+     }
+
+     .brand {
+       font-weight: 600;
+     }
+
+     nav {
+       display: flex;
+       gap: 1rem;
+     }
+
+     nav a {
+       color: white;
+       text-decoration: none;
+     }
+
+     .shell-main {
+       padding: 1.5rem;
+       max-width: 960px;
+       margin: 0 auto;
+     }`
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
