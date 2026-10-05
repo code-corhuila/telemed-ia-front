@@ -24,42 +24,24 @@ describe('ShellLayoutComponent', () => {
     expect(agentLink?.textContent).toContain('Preconsulta IA');
   });
 
-  it('shows the main TeleMed IA navigation', async () => {
-  await TestBed.configureTestingModule({
-    imports: [ShellLayoutComponent],
-    providers: [provideRouter([])],
-  }).compileComponents();
+  it('shows the MVP TeleMed IA navigation', async () => {
+    await TestBed.configureTestingModule({
+      imports: [ShellLayoutComponent],
+      providers: [provideRouter([])],
+    }).compileComponents();
 
-  const fixture = TestBed.createComponent(ShellLayoutComponent);
-  fixture.detectChanges();
+    const fixture = TestBed.createComponent(ShellLayoutComponent);
+    fixture.detectChanges();
 
-  const element: HTMLElement = fixture.nativeElement;
+    const element: HTMLElement = fixture.nativeElement;
 
-  expect(element.textContent).toContain('Inicio');
-  expect(element.textContent).toContain('Mis citas');
-  expect(element.textContent).toContain('Asistente IA');
-  expect(element.textContent).toContain('Historial');
-  expect(element.textContent).toContain('Cerrar sesión');
-});
-
-it('shows the MVP TeleMed IA navigation', async () => {
-  await TestBed.configureTestingModule({
-    imports: [ShellLayoutComponent],
-    providers: [provideRouter([])],
-  }).compileComponents();
-
-  const fixture = TestBed.createComponent(ShellLayoutComponent);
-  fixture.detectChanges();
-
-  const element: HTMLElement = fixture.nativeElement;
-
-  expect(element.textContent).toContain('Inicio');
-  expect(element.textContent).toContain('Mis citas');
-  expect(element.textContent).toContain('Agendar cita');
-  expect(element.textContent).toContain('Preconsulta IA');
-  expect(element.textContent).toContain('Historial');
-  expect(element.textContent).toContain('Mi perfil');
-  expect(element.textContent).toContain('Notificaciones');
-  expect(element.textContent).toContain('Cerrar sesión');
-});
+    expect(element.textContent).toContain('Inicio');
+    expect(element.textContent).toContain('Mis citas');
+    expect(element.textContent).toContain('Agendar cita');
+    expect(element.textContent).toContain('Preconsulta IA');
+    expect(element.textContent).toContain('Historial');
+    expect(element.textContent).toContain('Mi perfil');
+    expect(element.textContent).toContain('Notificaciones');
+    expect(element.textContent).toContain('Cerrar sesión');
+  });
 });
