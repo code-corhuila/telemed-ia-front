@@ -146,40 +146,44 @@
   </aside>
 
   <section class="workspace">
-    @if (!isAgentRoute()) {
-      <header class="topbar">
-        <label class="search">
-          <span
-            class="search__icon"
-            aria-hidden="true"
-          >
-            ⌕
-          </span>
+    <header class="topbar">
+      <label class="search">
+        <span
+          class="search__icon"
+          aria-hidden="true"
+        >
+          ⌕
+        </span>
 
-          <input
-            type="search"
-            placeholder="Buscar..."
-            aria-label="Buscar"
-          />
-        </label>
+        <input
+          type="search"
+          placeholder="Buscar médicos o especialidades..."
+          aria-label="Buscar médicos o especialidades"
+        />
+      </label>
 
-        <div class="topbar__actions">
-          <button
-            class="icon-button"
-            type="button"
-            aria-label="Notificaciones"
-            title="Notificaciones"
-          >
-            ♢
-          </button>
-        </div>
-      </header>
-    }
+      <div class="topbar__actions">
+        <button
+          class="icon-button"
+          type="button"
+          aria-label="Notificaciones"
+          title="Notificaciones"
+        >
+          ♢
+        </button>
 
-    <main
-      class="shell-main"
-      [class.shell-main--agent]="isAgentRoute()"
-    >
+        <a
+          class="icon-button"
+          routerLink="/patient/profile"
+          aria-label="Mi perfil"
+          title="Mi perfil"
+        >
+          ♙
+        </a>
+      </div>
+    </header>
+
+    <main class="shell-main">
       <router-outlet></router-outlet>
     </main>
   </section>
