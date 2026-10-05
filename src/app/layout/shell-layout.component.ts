@@ -1,63 +1,58 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+} from '@angular/core';
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+  RouterOutlet,
+} from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter } from 'rxjs';
 
 import { SessionService } from '../core/auth/session.service';
 
 @Component({
   selector: 'app-shell-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
-  template: `
-    <header class="shell-header">
-      <span class="brand">TeleMed IA</span>
-
-      <nav>
-        <a routerLink="/patient">Paciente</a>
-        <a routerLink="/agent">Asistente IA</a>
-      </nav>
-
-      <button type="button" (click)="signOut()">Salir</button>
-    </header>
-
-    <main class="shell-main">
-      <router-outlet></router-outlet>
-    </main>
-  `,
-  styles: [
-    `.shell-header {
-       display: flex;
-       gap: 1rem;
-       align-items: center;
-       padding: 0.75rem 1rem;
-       background: var(--color-primary);
-       color: white;
-     }
-
-     .brand {
-       font-weight: 600;
-     }
-
-     nav {
-       display: flex;
-       gap: 1rem;
-     }
-
-     nav a {
-       color: white;
-       text-decoration: none;
-     }
-
-     .shell-main {
-       padding: 1.5rem;
-       max-width: 960px;
-       margin: 0 auto;
-     }`
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
   ],
+  templateUrl: './shell-layout.component.html',
+  styleUrl: './shell-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShellLayoutComponent {
   private readonly session = inject(SessionService);
   private readonly router = inject(Router);
+  private readonly destroyRef = inject(DestroyRef);
+
+  protected readonly isAgentRoute = signal(
+    this.router.url.startsWith('/agent'),
+  );
+
+  constructor() {
+    this.router.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd =>
+            event instanceof NavigationEnd,
+        ),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe((event) => {
+        this.isAgentRoute.set(
+          event.urlAfterRedirects.startsWith('/agent'),
+        );
+      });
+  }
 
   protected signOut(): void {
     this.session.signOut();
