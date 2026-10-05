@@ -269,10 +269,6 @@ a.nav-item:hover {
   padding: 2rem;
 }
 
-.shell-main--agent {
-  max-width: none;
-  padding: 2rem 2.5rem;
-}
 
 @media (max-width: 800px) {
   .shell {
@@ -318,9 +314,7 @@ a.nav-item:hover {
   .search {
     width: min(320px, 75%);
   }
-
-  .shell-main,
-  .shell-main--agent {
-    padding: 1.25rem;
-  }
+.shell-main {
+  padding: 1.25rem;
+}
 }
