@@ -10,16 +10,14 @@
       "architect": {
         "build": {
           "builder": "@angular-architects/native-federation:build",
-          "options": {
-            "target": "telemed-ia-front:esbuild",
-            "outputPath": "dist/telemed-ia-front"
-          },
+          "options": {},
           "configurations": {
             "production": {
               "target": "telemed-ia-front:esbuild:production"
             },
             "development": {
-              "target": "telemed-ia-front:esbuild:development"
+              "target": "telemed-ia-front:esbuild:development",
+              "dev": true
             }
           },
           "defaultConfiguration": "production"
@@ -27,6 +25,7 @@
         "esbuild": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/telemed-ia-front",
             "browser": "src/bootstrap.ts",
             "index": "src/index.html",
             "tsConfig": "tsconfig.app.json",
@@ -50,19 +49,29 @@
               "optimization": false,
               "sourceMap": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
+          "builder": "@angular-architects/native-federation:build",
+          "options": {
+            "target": "telemed-ia-front:serve-original:development",
+            "rebuildDelay": 500,
+            "dev": true,
+            "port": 4200
+          }
+        },
+        "serve-original": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "telemed-ia-front:build:production"
-            },
             "development": {
-              "buildTarget": "telemed-ia-front:build:development"
+              "buildTarget": "telemed-ia-front:esbuild:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "port": 4200
+          }
         },
         "test": {
           "builder": "@angular/build:unit-test",
