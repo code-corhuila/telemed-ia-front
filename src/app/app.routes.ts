@@ -40,6 +40,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'appointment',
+        loadChildren: () =>
+          import('./remotes/appointment.remote').then(
+            (m) => m.APPOINTMENT_REMOTE_ROUTES,
+          ),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'dashboard',
