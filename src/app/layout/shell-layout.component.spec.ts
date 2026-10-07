@@ -18,17 +18,24 @@ describe('ShellLayoutComponent', () => {
       providers: [provideRouter([])],
     }).compileComponents();
 
-    const fixture = TestBed.createComponent(ShellLayoutComponent);
+    const fixture = TestBed.createComponent(
+      ShellLayoutComponent,
+    );
+
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
 
-    const agentLink = element.querySelector<HTMLAnchorElement>(
-      'a[href="/agent"]',
-    );
+    const agentLink =
+      element.querySelector<HTMLAnchorElement>(
+        'a[href="/agent"]',
+      );
 
     expect(agentLink).toBeTruthy();
-    expect(agentLink?.textContent).toContain('Preconsulta IA');
+
+    expect(agentLink?.textContent).toContain(
+      'Preconsulta IA',
+    );
   });
 
   it('shows the MVP TeleMed IA navigation', async () => {
@@ -37,7 +44,10 @@ describe('ShellLayoutComponent', () => {
       providers: [provideRouter([])],
     }).compileComponents();
 
-    const fixture = TestBed.createComponent(ShellLayoutComponent);
+    const fixture = TestBed.createComponent(
+      ShellLayoutComponent,
+    );
+
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
@@ -52,7 +62,7 @@ describe('ShellLayoutComponent', () => {
     expect(element.textContent).toContain('Cerrar sesión');
   });
 
-  it('keeps the topbar visible on the Agent route', async () => {
+  it('hides the topbar and expands the workspace on the Agent route', async () => {
     await TestBed.configureTestingModule({
       imports: [ShellLayoutComponent],
       providers: [
@@ -65,20 +75,28 @@ describe('ShellLayoutComponent', () => {
       ],
     }).compileComponents();
 
-    const fixture = TestBed.createComponent(ShellLayoutComponent);
+    const fixture = TestBed.createComponent(
+      ShellLayoutComponent,
+    );
+
     const router = TestBed.inject(Router);
 
     await router.navigateByUrl('/agent');
+
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
 
     expect(
       element.querySelector('.topbar'),
-    ).toBeTruthy();
+    ).toBeFalsy();
 
     expect(
       element.querySelector('input[type="search"]'),
+    ).toBeFalsy();
+
+    expect(
+      element.querySelector('.shell-main--agent'),
     ).toBeTruthy();
   });
 
@@ -88,16 +106,23 @@ describe('ShellLayoutComponent', () => {
       providers: [provideRouter([])],
     }).compileComponents();
 
-    const fixture = TestBed.createComponent(ShellLayoutComponent);
+    const fixture = TestBed.createComponent(
+      ShellLayoutComponent,
+    );
+
     fixture.detectChanges();
 
     const element: HTMLElement = fixture.nativeElement;
 
-    const documentLink = element.querySelector<HTMLAnchorElement>(
-      'a[href="/documents"]',
-    );
+    const documentLink =
+      element.querySelector<HTMLAnchorElement>(
+        'a[href="/documents"]',
+      );
 
     expect(documentLink).toBeTruthy();
-    expect(documentLink?.textContent).toContain('Documentos');
+
+    expect(documentLink?.textContent).toContain(
+      'Documentos',
+    );
   });
 });
