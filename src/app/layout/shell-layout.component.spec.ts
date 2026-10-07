@@ -81,4 +81,23 @@ describe('ShellLayoutComponent', () => {
       element.querySelector('input[type="search"]'),
     ).toBeTruthy();
   });
+
+  it('shows navigation to the Document Generation portal', async () => {
+    await TestBed.configureTestingModule({
+      imports: [ShellLayoutComponent],
+      providers: [provideRouter([])],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(ShellLayoutComponent);
+    fixture.detectChanges();
+
+    const element: HTMLElement = fixture.nativeElement;
+
+    const documentLink = element.querySelector<HTMLAnchorElement>(
+      'a[href="/documents"]',
+    );
+
+    expect(documentLink).toBeTruthy();
+    expect(documentLink?.textContent).toContain('Documentos');
+  });
 });

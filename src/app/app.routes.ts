@@ -47,6 +47,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'documents',
+        loadChildren: () =>
+          import('./remotes/document.remote').then(
+            (m) => m.DOCUMENT_REMOTE_ROUTES,
+          ),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'dashboard',
