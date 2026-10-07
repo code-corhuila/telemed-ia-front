@@ -125,4 +125,31 @@ describe('ShellLayoutComponent', () => {
       'Documentos',
     );
   });
+
+  it('does not render the global topbar', async () => {
+  await TestBed.configureTestingModule({
+    imports: [ShellLayoutComponent],
+    providers: [provideRouter([])],
+  }).compileComponents();
+
+  const fixture = TestBed.createComponent(
+    ShellLayoutComponent,
+  );
+
+  fixture.detectChanges();
+
+  const element: HTMLElement = fixture.nativeElement;
+
+  expect(
+    element.querySelector('.topbar'),
+  ).toBeFalsy();
+
+  expect(
+    element.querySelector('input[type="search"]'),
+  ).toBeFalsy();
+
+  expect(
+    element.querySelector('.topbar__actions'),
+  ).toBeFalsy();
+});
 });
