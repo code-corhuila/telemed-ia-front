@@ -28,6 +28,10 @@ export class ShellLayoutComponent {
   private readonly session = inject(SessionService);
   private readonly router = inject(Router);
 
+  protected isAgentRoute(): boolean {
+    return this.router.url.startsWith('/agent');
+  }
+
   protected signOut(): void {
     this.session.signOut();
     this.router.navigateByUrl('/sign-in');
