@@ -78,6 +78,8 @@
   font-size: 0.72rem;
 }
 
+/* NAVIGATION */
+
 .sidebar__nav {
   display: grid;
   gap: 0.45rem;
@@ -125,6 +127,8 @@ a.nav-item:hover {
   text-align: center;
   font-size: 1.08rem;
 }
+
+/* SIDEBAR FOOTER */
 
 .sidebar__footer {
   display: grid;
@@ -211,6 +215,7 @@ a.nav-item:hover {
 .workspace {
   min-width: 0;
   min-height: 100vh;
+  background: var(--shell-bg);
 }
 
 .topbar {
@@ -319,6 +324,7 @@ a.nav-item:hover {
 .shell-main {
   width: 100%;
   max-width: 1280px;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -378,8 +384,8 @@ a.nav-item:hover {
     justify-content: center;
   }
 
-  .topbar {
-    padding-inline: 1rem;
+  .shell-main {
+    padding: 1.25rem;
   }
 
   .search {

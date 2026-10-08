@@ -99,6 +99,10 @@ export class ShellLayoutComponent {
         .toUpperCase();
     });
 
+  protected isAgentRoute(): boolean {
+    return this.router.url.startsWith('/agent');
+  }
+
   protected signOut(): void {
     this.session.signOut();
     void this.router.navigateByUrl(
