@@ -18,7 +18,9 @@
   background: var(--shell-bg);
 }
 
-/* SIDEBAR */
+/* ========================= */
+/* Sidebar                   */
+/* ========================= */
 
 .sidebar {
   position: sticky;
@@ -59,8 +61,7 @@
   object-fit: contain;
 }
 
-.brand__text,
-.sidebar-user__info {
+.brand__text {
   display: grid;
 }
 
@@ -141,13 +142,22 @@ a.nav-item:hover {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  min-width: 0;
   padding: 0.4rem 0.35rem;
 }
 
+.sidebar-user__info {
+  display: grid;
+  min-width: 0;
+}
+
 .sidebar-user__info strong {
+  overflow: hidden;
   color: #fff;
   font-size: 0.82rem;
   font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .sidebar-user__info span {
@@ -198,7 +208,9 @@ a.nav-item:hover {
   color: #fff;
 }
 
-/* WORKSPACE */
+/* ========================= */
+/* Workspace / topbar        */
+/* ========================= */
 
 .workspace {
   min-width: 0;
@@ -206,7 +218,108 @@ a.nav-item:hover {
   background: var(--shell-bg);
 }
 
-/* MAIN CONTENT */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  gap: 1rem;
+  padding: 0.75rem 1.75rem;
+  border-bottom: 1px solid var(--shell-border);
+  background: #fff;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: min(410px, 50%);
+  padding: 0 0.85rem;
+  border: 1px solid var(--shell-border);
+  border-radius: 9px;
+  background: #f8fafc;
+}
+
+.search__icon {
+  color: #8491a5;
+  font-size: 1rem;
+}
+
+.search input {
+  width: 100%;
+  min-height: 38px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--shell-text);
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.search input::placeholder {
+  color: #9aa4b3;
+}
+
+.topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.topbar__identity {
+  display: grid;
+  min-width: 0;
+}
+
+.topbar__identity strong {
+  max-width: 180px;
+  overflow: hidden;
+  color: var(--shell-text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topbar__identity span {
+  margin-top: 0.08rem;
+  color: var(--shell-muted);
+  font-size: 0.68rem;
+}
+
+.avatar--topbar {
+  width: 36px;
+  height: 36px;
+  background: #e4efff;
+  color: var(--shell-primary);
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--shell-border);
+  border-radius: 50%;
+  background: #fff;
+  color: #526178;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.icon-button:hover {
+  background: #f7f9fc;
+}
 
 .shell-main {
   width: 100%;
@@ -216,19 +329,23 @@ a.nav-item:hover {
   padding: 2rem;
 }
 
-/* Focused layout for the Intelligent Agent */
+/* ========================= */
+/* Responsive                */
+/* ========================= */
 
-.shell-main--agent {
-  width: 100%;
-  height: 100vh;
-  min-height: 0;
-  max-width: none;
-  margin: 0;
-  padding: 1rem 2rem;
-  overflow: hidden;
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .topbar {
+    padding-inline: 1.25rem;
+  }
+
+  .shell-main {
+    padding: 1.5rem;
+  }
 }
-
-/* RESPONSIVE */
 
 @media (max-width: 800px) {
   .shell {
@@ -271,23 +388,38 @@ a.nav-item:hover {
     padding: 1.25rem;
   }
 
-  .shell-main--agent {
-    height: 100vh;
-    padding: 0.75rem 1rem;
-    overflow: hidden;
+  .search {
+    width: min(320px, 65%);
+  }
+
+  .topbar__identity {
+    display: none;
+  }
+
+  .shell-main {
+    padding: 1.25rem;
   }
 }
 
-@media (max-width: 520px) {
-  .shell {
-    grid-template-columns: 64px minmax(0, 1fr);
+@media (max-width: 560px) {
+  .topbar {
+    gap: 0.6rem;
   }
 
-  .sidebar {
-    padding-inline: 0.5rem;
+  .search {
+    width: 100%;
   }
 
-  .shell-main--agent {
-    padding: 0.6rem;
+  .topbar__user {
+    flex-shrink: 0;
+  }
+
+  .topbar__actions .icon-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .avatar--topbar {
+    display: none;
   }
 }
