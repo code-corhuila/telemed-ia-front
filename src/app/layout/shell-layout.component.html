@@ -18,10 +18,17 @@
       class="sidebar__nav"
       aria-label="Navegación principal"
     >
+      <!-- ==================== -->
+      <!-- Common navigation     -->
+      <!-- ==================== -->
+
       <a
         class="nav-item"
         routerLink="/dashboard"
         routerLinkActive="nav-item--active"
+        [routerLinkActiveOptions]="{
+          exact: true
+        }"
       >
         <span
           class="nav-item__icon"
@@ -33,106 +40,181 @@
         <span>Inicio</span>
       </a>
 
-      <span
-        class="nav-item nav-item--disabled"
-        aria-disabled="true"
-      >
-        <span
-          class="nav-item__icon"
-          aria-hidden="true"
+      <!-- ==================== -->
+      <!-- Patient navigation    -->
+      <!-- ==================== -->
+
+      @if (isPatient()) {
+        <a
+          class="nav-item"
+          routerLink="/appointment"
+          routerLinkActive="nav-item--active"
+          [routerLinkActiveOptions]="{
+            exact: true
+          }"
         >
-          ▣
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ▣
+          </span>
+
+          <span>Mis citas</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/appointment/book"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ＋
+          </span>
+
+          <span>Agendar cita</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/agent"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ✦
+          </span>
+
+          <span>Preconsulta IA</span>
+        </a>
+
+        <span
+          class="nav-item nav-item--disabled"
+          aria-disabled="true"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ◷
+          </span>
+
+          <span>Historial</span>
         </span>
 
-        <span>Mis citas</span>
-      </span>
-
-      <span
-        class="nav-item nav-item--disabled"
-        aria-disabled="true"
-      >
-        <span
-          class="nav-item__icon"
-          aria-hidden="true"
+        <a
+          class="nav-item"
+          routerLink="/documents"
+          routerLinkActive="nav-item--active"
         >
-          ＋
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ⎙
+          </span>
+
+          <span>Documentos</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/patient/profile"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ♙
+          </span>
+
+          <span>Mi perfil</span>
+        </a>
+
+        <span
+          class="nav-item nav-item--disabled"
+          aria-disabled="true"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ♢
+          </span>
+
+          <span>Notificaciones</span>
+        </span>
+      }
+
+      <!-- ==================== -->
+      <!-- Professional navigation -->
+      <!-- ==================== -->
+
+      @if (isProfessional()) {
+        <a
+          class="nav-item"
+          routerLink="/appointment/professional/schedule"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ◫
+          </span>
+
+          <span>Mi agenda</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/appointment/professional"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ▣
+          </span>
+
+          <span>Citas profesionales</span>
+        </a>
+
+        <span
+          class="nav-item nav-item--disabled"
+          aria-disabled="true"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ♙
+          </span>
+
+          <span>Mi perfil</span>
         </span>
 
-        <span>Agendar cita</span>
-      </span>
-
-      <a
-        class="nav-item"
-        routerLink="/agent"
-        routerLinkActive="nav-item--active"
-      >
         <span
-          class="nav-item__icon"
-          aria-hidden="true"
+          class="nav-item nav-item--disabled"
+          aria-disabled="true"
         >
-          ✦
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ♢
+          </span>
+
+          <span>Notificaciones</span>
         </span>
-
-        <span>Preconsulta IA</span>
-      </a>
-
-      <span
-        class="nav-item nav-item--disabled"
-        aria-disabled="true"
-      >
-        <span
-          class="nav-item__icon"
-          aria-hidden="true"
-        >
-          ◷
-        </span>
-
-        <span>Historial</span>
-      </span>
-
-      <a
-        class="nav-item"
-        routerLink="/documents"
-        routerLinkActive="nav-item--active"
-      >
-        <span
-          class="nav-item__icon"
-          aria-hidden="true"
-        >
-          ⎙
-        </span>
-
-        <span>Documentos</span>
-      </a>
-
-      <a
-        class="nav-item"
-        routerLink="/patient/profile"
-        routerLinkActive="nav-item--active"
-      >
-        <span
-          class="nav-item__icon"
-          aria-hidden="true"
-        >
-          ♙
-        </span>
-
-        <span>Mi perfil</span>
-      </a>
-
-      <span
-        class="nav-item nav-item--disabled"
-        aria-disabled="true"
-      >
-        <span
-          class="nav-item__icon"
-          aria-hidden="true"
-        >
-          ♢
-        </span>
-
-        <span>Notificaciones</span>
-      </span>
+      }
     </nav>
 
     <div class="sidebar__footer">
@@ -141,12 +223,17 @@
           class="avatar avatar--sidebar"
           aria-hidden="true"
         >
-          P
+          {{ avatarInitial() }}
         </div>
 
         <div class="sidebar-user__info">
-          <strong>Paciente</strong>
-          <span>Cuenta de paciente</span>
+          <strong>
+            {{ currentName() }}
+          </strong>
+
+          <span>
+            {{ roleDescription() }}
+          </span>
         </div>
       </div>
 
@@ -155,8 +242,13 @@
         type="button"
         (click)="signOut()"
       >
-        <span aria-hidden="true">↪</span>
-        <span>Cerrar sesión</span>
+        <span aria-hidden="true">
+          ↪
+        </span>
+
+        <span>
+          Cerrar sesión
+        </span>
       </button>
     </div>
   </aside>
@@ -178,24 +270,45 @@
         />
       </label>
 
-      <div class="topbar__actions">
-        <button
-          class="icon-button"
-          type="button"
-          aria-label="Notificaciones"
-          title="Notificaciones"
+      <div class="topbar__user">
+        <div
+          class="avatar avatar--topbar"
+          aria-hidden="true"
         >
-          ♢
-        </button>
+          {{ avatarInitial() }}
+        </div>
 
-        <a
-          class="icon-button"
-          routerLink="/patient/profile"
-          aria-label="Mi perfil"
-          title="Mi perfil"
-        >
-          ♙
-        </a>
+        <div class="topbar__identity">
+          <strong>
+            {{ currentName() }}
+          </strong>
+
+          <span>
+            {{ roleLabel() }}
+          </span>
+        </div>
+
+        <div class="topbar__actions">
+          <button
+            class="icon-button"
+            type="button"
+            aria-label="Notificaciones"
+            title="Notificaciones"
+          >
+            ♢
+          </button>
+
+          @if (isPatient()) {
+            <a
+              class="icon-button"
+              routerLink="/patient/profile"
+              aria-label="Mi perfil"
+              title="Mi perfil"
+            >
+              ♙
+            </a>
+          }
+        </div>
       </div>
     </header>
 
