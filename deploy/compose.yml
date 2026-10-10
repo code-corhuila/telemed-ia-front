@@ -1,0 +1,21 @@
+name: telemed-ia-front
+
+services:
+  front:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: telemed-ia-front:local
+    container_name: telemed-ia-front
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    expose:
+      - "80"
+    networks:
+      - platform
+
+networks:
+  platform:
+    external: true
+    name: platform

@@ -1,0 +1,6 @@
+{
+  "patient": "http://localhost:4201/remoteEntry.json",
+  "agent": "http://localhost:4202/remoteEntry.json",
+  "appointment": "http://localhost:4203/remoteEntry.json",
+  "document": "http://localhost:4204/remoteEntry.json"
+}

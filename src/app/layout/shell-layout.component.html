@@ -1,0 +1,319 @@
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand__icon">
+        <img
+          src="/assets/images/logo.svg"
+          alt="TeleMed IA"
+        />
+      </div>
+
+      <div class="brand__text">
+        <strong>TeleMed IA</strong>
+        <span>Salud inteligente</span>
+      </div>
+    </div>
+
+    <nav
+      class="sidebar__nav"
+      aria-label="Navegación principal"
+    >
+      <!-- ==================== -->
+      <!-- Common navigation     -->
+      <!-- ==================== -->
+
+      <a
+        class="nav-item"
+        routerLink="/dashboard"
+        routerLinkActive="nav-item--active"
+        [routerLinkActiveOptions]="{
+          exact: true
+        }"
+      >
+        <span
+          class="nav-item__icon"
+          aria-hidden="true"
+        >
+          ⌂
+        </span>
+
+        <span>Inicio</span>
+      </a>
+
+      <!-- ==================== -->
+      <!-- Patient navigation    -->
+      <!-- ==================== -->
+
+      @if (isPatient()) {
+        <a
+          class="nav-item"
+          routerLink="/appointment"
+          routerLinkActive="nav-item--active"
+          [routerLinkActiveOptions]="{
+            exact: true
+          }"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ▣
+          </span>
+
+          <span>Mis citas</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/appointment/book"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ＋
+          </span>
+
+          <span>Agendar cita</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/agent"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ✦
+          </span>
+
+          <span>Preconsulta IA</span>
+        </a>
+
+        <span
+          class="nav-item nav-item--disabled"
+          aria-disabled="true"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ◷
+          </span>
+
+          <span>Historial</span>
+        </span>
+
+        <a
+          class="nav-item"
+          routerLink="/documents"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ⎙
+          </span>
+
+          <span>Documentos</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/patient/profile"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ♙
+          </span>
+
+          <span>Mi perfil</span>
+        </a>
+
+        <span
+          class="nav-item nav-item--disabled"
+          aria-disabled="true"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ♢
+          </span>
+
+          <span>Notificaciones</span>
+        </span>
+      }
+
+      <!-- ==================== -->
+      <!-- Professional navigation -->
+      <!-- ==================== -->
+
+      @if (isProfessional()) {
+        <a
+          class="nav-item"
+          routerLink="/appointment/professional/schedule"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ◫
+          </span>
+
+          <span>Mi agenda</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/appointment/professional"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ▣
+          </span>
+
+          <span>Citas profesionales</span>
+        </a>
+
+        <span
+          class="nav-item nav-item--disabled"
+          aria-disabled="true"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ♙
+          </span>
+
+          <span>Mi perfil</span>
+        </span>
+
+        <span
+          class="nav-item nav-item--disabled"
+          aria-disabled="true"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ♢
+          </span>
+
+          <span>Notificaciones</span>
+        </span>
+      }
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="sidebar-user">
+        <div
+          class="avatar avatar--sidebar"
+          aria-hidden="true"
+        >
+          {{ avatarInitial() }}
+        </div>
+
+        <div class="sidebar-user__info">
+          <strong>
+            {{ currentName() }}
+          </strong>
+
+          <span>
+            {{ roleDescription() }}
+          </span>
+        </div>
+      </div>
+
+      <button
+        class="sign-out"
+        type="button"
+        (click)="signOut()"
+      >
+        <span aria-hidden="true">
+          ↪
+        </span>
+
+        <span>
+          Cerrar sesión
+        </span>
+      </button>
+    </div>
+  </aside>
+
+  <section class="workspace">
+    <header class="topbar">
+      <label class="search">
+        <span
+          class="search__icon"
+          aria-hidden="true"
+        >
+          ⌕
+        </span>
+
+        <input
+          type="search"
+          placeholder="Buscar médicos o especialidades..."
+          aria-label="Buscar médicos o especialidades"
+        />
+      </label>
+
+      <div class="topbar__user">
+        <div
+          class="avatar avatar--topbar"
+          aria-hidden="true"
+        >
+          {{ avatarInitial() }}
+        </div>
+
+        <div class="topbar__identity">
+          <strong>
+            {{ currentName() }}
+          </strong>
+
+          <span>
+            {{ roleLabel() }}
+          </span>
+        </div>
+
+        <div class="topbar__actions">
+          <button
+            class="icon-button"
+            type="button"
+            aria-label="Notificaciones"
+            title="Notificaciones"
+          >
+            ♢
+          </button>
+
+          @if (isPatient()) {
+            <a
+              class="icon-button"
+              routerLink="/patient/profile"
+              aria-label="Mi perfil"
+              title="Mi perfil"
+            >
+              ♙
+            </a>
+          }
+        </div>
+      </div>
+    </header>
+
+    <main class="shell-main">
+      <router-outlet></router-outlet>
+    </main>
+  </section>
+</div>
