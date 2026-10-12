@@ -93,9 +93,13 @@
           <span>Preconsulta IA</span>
         </a>
 
-        <span
-          class="nav-item nav-item--disabled"
-          aria-disabled="true"
+        <a
+          class="nav-item"
+          routerLink="/consultation"
+          routerLinkActive="nav-item--active"
+          [routerLinkActiveOptions]="{
+            exact: true
+          }"
         >
           <span
             class="nav-item__icon"
@@ -104,8 +108,8 @@
             ◷
           </span>
 
-          <span>Historial</span>
-        </span>
+          <span>Mis consultas</span>
+        </a>
 
         <a
           class="nav-item"
@@ -185,6 +189,21 @@
           </span>
 
           <span>Citas profesionales</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/consultation/professional"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ✚
+          </span>
+
+          <span>Consultas asignadas</span>
         </a>
 
         <span

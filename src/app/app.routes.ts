@@ -53,6 +53,13 @@ export const routes: Routes = [
             (m) => m.DOCUMENT_REMOTE_ROUTES,
           ),
       },
+            {
+        path: 'consultation',
+        loadChildren: () =>
+          import('./remotes/consultation.remote').then(
+            (m) => m.CONSULTATION_REMOTE_ROUTES,
+          ),
+      },
       {
         path: '',
         pathMatch: 'full',
