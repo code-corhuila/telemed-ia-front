@@ -1,0 +1,96 @@
+<section class="dashboard">
+  <header class="dashboard__header">
+    <h1>Dashboard</h1>
+
+    <div>
+      <h2>¡Bienvenido!</h2>
+      <p>
+        Gestiona tu atención y comienza una nueva preconsulta
+        desde TeleMed IA.
+      </p>
+    </div>
+  </header>
+
+  <section class="agent-card">
+    <div class="agent-card__content">
+      <span class="agent-card__label">
+        Sistema de asistencia inteligente
+      </span>
+
+      <h2>Hablar con el Asistente IA</h2>
+
+      <p>
+        Describe tus síntomas y prepara la información previa
+        para tu atención médica.
+      </p>
+
+      <a
+        class="agent-card__action"
+        routerLink="/agent"
+      >
+        Iniciar preconsulta
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div
+      class="agent-card__icon"
+      aria-hidden="true"
+    >
+      ✦
+    </div>
+  </section>
+
+  <section
+    class="dashboard-stats"
+    aria-label="Resumen del paciente"
+  >
+    @for (stat of stats; track stat.label) {
+      <article class="stat-card">
+        <span>{{ stat.label }}</span>
+        <strong>{{ stat.value }}</strong>
+      </article>
+    }
+  </section>
+
+  <section class="appointments">
+    <div class="appointments__header">
+      <div>
+        <h2>Tus próximas citas</h2>
+        <p>
+          Consulta aquí tus próximas atenciones programadas.
+        </p>
+      </div>
+    </div>
+
+    @if (upcomingAppointments.length === 0) {
+      <div
+        class="appointments__empty"
+        data-testid="appointments-empty"
+      >
+        <span aria-hidden="true">▣</span>
+
+        <strong>No tienes citas próximas</strong>
+
+        <p>
+          Tus próximas citas aparecerán aquí cuando estén disponibles.
+        </p>
+      </div>
+    } @else {
+      <div class="appointments__list">
+        @for (
+          appointment of upcomingAppointments;
+          track appointment.date + appointment.time
+        ) {
+          <article class="appointment-card">
+            <strong>{{ appointment.specialty }}</strong>
+            <span>{{ appointment.professional }}</span>
+            <span>
+              {{ appointment.date }} · {{ appointment.time }}
+            </span>
+          </article>
+        }
+      </div>
+    }
+  </section>
+</section>
