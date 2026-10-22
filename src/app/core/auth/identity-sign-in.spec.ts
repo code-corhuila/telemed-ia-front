@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { ShellLayoutComponent } from '../../layout/shell-layout.component';
 import { authGuard } from './auth.guard';
+import { SessionTermination } from './session-termination.service';
 import { SessionService } from './session.service';
 
 // Sign-in lives in the identity portal (/auth); /sign-in is the developer token screen.
@@ -29,11 +30,15 @@ describe('sign-in destination', () => {
     expect(TestBed.inject(Router).serializeUrl(result)).toBe('/auth/sign-in?returnUrl=%2Fappointment');
   });
 
-  it('closes the session and opens the identity sign-in', async () => {
-    const signedIn = session(true);
+  it('ends the session through identity-api and opens the identity sign-in', async () => {
+    const termination = { end: vi.fn() };
     await TestBed.configureTestingModule({
       imports: [ShellLayoutComponent],
-      providers: [provideRouter([]), { provide: SessionService, useValue: signedIn }],
+      providers: [
+        provideRouter([]),
+        { provide: SessionService, useValue: session(true) },
+        { provide: SessionTermination, useValue: termination },
+      ],
     }).compileComponents();
     const navigate = vi.spyOn(TestBed.inject(Router), 'navigateByUrl').mockResolvedValue(true);
     const fixture = TestBed.createComponent(ShellLayoutComponent);
@@ -44,7 +49,7 @@ describe('sign-in destination', () => {
     )!;
     button.click();
 
-    expect(signedIn.signOut).toHaveBeenCalled();
+    expect(termination.end).toHaveBeenCalled();
     expect(navigate).toHaveBeenCalledWith('/auth/sign-in');
   });
 });
