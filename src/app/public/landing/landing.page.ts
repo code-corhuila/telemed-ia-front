@@ -62,6 +62,7 @@ const BENEFITS = [
 export class LandingPage {
   protected readonly steps = STEPS;
   protected readonly benefits = BENEFITS;
+  protected readonly year = new Date().getFullYear();
 
   private readonly document = inject(DOCUMENT);
 
