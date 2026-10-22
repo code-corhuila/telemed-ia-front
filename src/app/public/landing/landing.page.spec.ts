@@ -48,4 +48,41 @@ describe('LandingPage', () => {
     expect(links.length).toBe(1);
     expect(links[0].getAttribute('href')).toContain('family=Manrope');
   });
+
+  it('walks through the five steps, from the account to the consultation', () => {
+    const page = render();
+    const steps = [...page.querySelectorAll('#como-funciona ol > li h3')].map((h) => h.textContent?.trim());
+
+    expect(page.querySelector('#como-funciona h2')?.textContent).toContain('Cómo funciona');
+    expect(steps).toEqual([
+      'Crea tu cuenta',
+      'Agenda tu cita',
+      'Cuéntale al asistente',
+      'Responde sus preguntas',
+      'Llega a tu consulta',
+    ]);
+  });
+
+  it('shows the assistant screen with a summary for the doctor, not a diagnosis', () => {
+    const page = render();
+    const figure = page.querySelector('#como-funciona figure')!;
+
+    expect(figure.querySelector('img')?.getAttribute('alt')).toBe('Pantalla del asistente conversando con un paciente');
+    expect(figure.textContent).toContain('Resumen listo para tu médico');
+  });
+
+  it('reveals the sections straight away where scrolling cannot be observed', () => {
+    const page = render();
+    const revealed = [...page.querySelectorAll('[appReveal]')];
+
+    // jsdom has no IntersectionObserver.
+    expect(revealed.length).toBeGreaterThan(0);
+    expect(revealed.every((element) => element.classList.contains('is-in'))).toBe(true);
+  });
+
+  it('links the top bar to how it works', () => {
+    const page = render();
+
+    expect(page.querySelector('nav a[href="#como-funciona"]')?.textContent).toContain('Cómo funciona');
+  });
 });
