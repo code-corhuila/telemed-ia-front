@@ -1,0 +1,44 @@
+<header class="topbar">
+  <a class="brand" routerLink="/" aria-label="TeleMed IA, inicio">
+    <img src="assets/images/logo.svg" alt="" width="36" height="36" />
+    <span>TeleMed IA</span>
+  </a>
+
+  <nav aria-label="Principal">
+    <a class="nav-link" routerLink="/auth/sign-in">Iniciar sesión</a>
+    <a class="button button--small" routerLink="/auth/register">Crear cuenta</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <svg class="pulse" viewBox="0 0 600 80" aria-hidden="true" focusable="false">
+        <path pathLength="1" d="M0 44 H170 l12 -7 l12 7 H236 l9 -34 l12 66 l10 -46 l8 14 H340 l14 -9 l14 9 H600" />
+      </svg>
+
+      <h1 id="hero-title">Tu atención médica, más simple e inteligente.</h1>
+
+      <p class="lede">
+        Cuéntale tus síntomas a nuestro asistente antes de la consulta. Él organiza la información, tu médico la
+        recibe lista y tú agendas sin esperas.
+      </p>
+
+      <div class="actions">
+        <a class="button" routerLink="/auth/register">Crear cuenta</a>
+        <a class="button button--quiet" routerLink="/auth/sign-in">Ya tengo cuenta</a>
+      </div>
+
+      <p class="note">El asistente no diagnostica: prepara tu consulta con un profesional de la salud.</p>
+    </div>
+
+    <figure class="hero-visual">
+      <img
+        src="assets/images/hero-medical.png"
+        alt="Profesional de la salud atendiendo a una paciente con una tableta"
+        width="641"
+        height="487"
+      />
+    </figure>
+  </section>
+</main>

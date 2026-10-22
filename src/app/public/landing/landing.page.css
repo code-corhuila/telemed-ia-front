@@ -1,0 +1,235 @@
+/* Tokens live here: the landing page must not depend on the shell's global styles. */
+:host {
+  --tm-ink: #102a4c;
+  --tm-text: #3b4a60;
+  --tm-muted: #5d6d82;
+  --tm-primary: #2c7be5;
+  --tm-primary-strong: #1e5fc0;
+  --tm-sky: #eaf4ff;
+  --tm-line: #dfe6ef;
+  --tm-surface: #ffffff;
+  --tm-focus: 0 0 0 3px rgba(44, 123, 229, 0.35);
+  --tm-font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --tm-gutter: clamp(16px, 5vw, 72px);
+
+  display: block;
+  min-height: 100vh;
+  color: var(--tm-text);
+  font-family: var(--tm-font);
+  line-height: 1.6;
+  background: var(--tm-surface);
+}
+
+a:focus-visible {
+  outline: none;
+  box-shadow: var(--tm-focus);
+}
+
+/* Top bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px var(--tm-gutter);
+  background: rgba(255, 255, 255, 0.86);
+  border-bottom: 1px solid rgba(223, 230, 239, 0.7);
+  backdrop-filter: saturate(1.4) blur(12px);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--tm-ink);
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 8px 12px;
+  color: var(--tm-ink);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.nav-link:hover {
+  color: var(--tm-primary);
+}
+
+/* Buttons */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 24px;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--tm-primary);
+  border-radius: 12px;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.button:hover {
+  background: var(--tm-primary-strong);
+  transform: translateY(-1px);
+}
+
+.button--small {
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: 0.9375rem;
+  border-radius: 10px;
+}
+
+.button--quiet {
+  color: var(--tm-ink);
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--tm-line);
+}
+
+.button--quiet:hover {
+  color: var(--tm-primary);
+  background: var(--tm-sky);
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: clamp(40px, 8vh, 96px) var(--tm-gutter) clamp(56px, 10vh, 120px);
+}
+
+.pulse {
+  display: block;
+  width: min(360px, 80%);
+  height: auto;
+  margin-bottom: 20px;
+  overflow: visible;
+}
+
+.pulse path {
+  fill: none;
+  stroke: var(--tm-primary);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.6s 0.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+h1 {
+  max-width: 13ch;
+  margin: 0;
+  color: var(--tm-ink);
+  font-size: clamp(2.5rem, 5.4vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.lede {
+  max-width: 34rem;
+  margin: 24px 0 0;
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.note {
+  max-width: 34rem;
+  margin: 20px 0 0;
+  color: var(--tm-muted);
+  font-size: 0.875rem;
+}
+
+.hero-visual {
+  position: relative;
+  margin: 0;
+}
+
+.hero-visual::before {
+  position: absolute;
+  inset: 8% -6% -6% 10%;
+  content: '';
+  background: var(--tm-sky);
+  border-radius: 40px;
+}
+
+.hero-visual img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 641 / 487;
+  object-fit: cover;
+  border-radius: 32px;
+  box-shadow: 0 30px 60px -30px rgba(16, 42, 76, 0.45);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual::before {
+    inset: 10% -3% -4% 6%;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-link {
+    padding: 8px;
+  }
+
+  .actions .button {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse path {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .button {
+    transition: none;
+  }
+
+  .button:hover {
+    transform: none;
+  }
+}
