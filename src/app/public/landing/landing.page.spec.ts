@@ -111,4 +111,21 @@ describe('LandingPage', () => {
 
     expect(page.querySelector('nav a[href="#beneficios"]')?.textContent).toContain('Beneficios');
   });
+
+  it('states the medical responsibility notice and the emergency line', () => {
+    const notice = render().querySelector('[role="note"]')?.textContent ?? '';
+
+    expect(notice).toContain('Aviso de responsabilidad médica');
+    expect(notice).toContain('no diagnostica enfermedades');
+    expect(notice).toContain('no reemplaza al profesional de la salud');
+    expect(notice).toContain('llama al 123');
+  });
+
+  it('ends with a footer that names the project and the current year, without repeating links', () => {
+    const footer = render().querySelector('footer')!;
+
+    expect(footer.textContent).toContain('proyecto académico de Ingeniería de Sistemas');
+    expect(footer.textContent).toContain(String(new Date().getFullYear()));
+    expect(footer.querySelectorAll('a').length).toBe(0);
+  });
 });
