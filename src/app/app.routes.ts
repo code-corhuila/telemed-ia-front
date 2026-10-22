@@ -11,6 +11,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('./remotes/identity.remote').then(
+        (m) => m.IDENTITY_REMOTE_ROUTES,
+      ),
+  },
+  {
     path: '',
     canActivate: [authGuard],
     loadComponent: () =>
