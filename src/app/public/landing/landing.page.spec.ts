@@ -85,4 +85,30 @@ describe('LandingPage', () => {
 
     expect(page.querySelector('nav a[href="#como-funciona"]')?.textContent).toContain('Cómo funciona');
   });
+
+  it('lists what patients and doctors get from the platform', () => {
+    const page = render();
+    const titles = [...page.querySelectorAll('#beneficios li h3')].map((h) => h.textContent?.trim());
+
+    expect(page.querySelector('#beneficios h2')?.textContent?.replace(/\s+/g, ' ')).toContain(
+      'Pensado para ti y para tu médico.',
+    );
+    expect(titles).toEqual([
+      'Disponible a toda hora',
+      'Agenda sin llamadas',
+      'Tu médico llega preparado',
+      'La atención adecuada',
+      'Todo en un solo lugar',
+      'Privacidad y seguridad',
+    ]);
+    expect(page.querySelector('#beneficios img')?.getAttribute('alt')).toBe(
+      'Ilustración de información médica digital',
+    );
+  });
+
+  it('links the top bar to the benefits', () => {
+    const page = render();
+
+    expect(page.querySelector('nav a[href="#beneficios"]')?.textContent).toContain('Beneficios');
+  });
 });
