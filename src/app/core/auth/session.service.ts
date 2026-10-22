@@ -21,6 +21,10 @@ export class SessionService {
   private static readonly TOKEN_KEY =
     'telemed.access-token';
 
+  // Kept only so sign-out can ask identity-api to revoke it.
+  private static readonly REFRESH_TOKEN_KEY =
+    'telemed.refresh-token';
+
   private readonly tokenSignal =
     signal<string | null>(this.readStored());
 
@@ -93,18 +97,39 @@ export class SessionService {
     return !this.isExpired(token);
   }
 
-  signIn(token: string): void {
+  signIn(token: string, refreshToken?: string): void {
     sessionStorage.setItem(
       SessionService.TOKEN_KEY,
       token,
     );
 
+    if (refreshToken) {
+      sessionStorage.setItem(
+        SessionService.REFRESH_TOKEN_KEY,
+        refreshToken,
+      );
+    } else {
+      sessionStorage.removeItem(
+        SessionService.REFRESH_TOKEN_KEY,
+      );
+    }
+
     this.tokenSignal.set(token);
+  }
+
+  getRefreshToken(): string | null {
+    return sessionStorage.getItem(
+      SessionService.REFRESH_TOKEN_KEY,
+    );
   }
 
   signOut(): void {
     sessionStorage.removeItem(
       SessionService.TOKEN_KEY,
+    );
+
+    sessionStorage.removeItem(
+      SessionService.REFRESH_TOKEN_KEY,
     );
 
     this.tokenSignal.set(null);
