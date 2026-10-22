@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { authGuard } from './core/auth/auth.guard';
+import { guestGuard } from './public/guest.guard';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,15 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./remotes/identity.remote').then(
         (m) => m.IDENTITY_REMOTE_ROUTES,
+      ),
+  },
+  {
+    // Only "/" (a matcher, so the authenticated shell stays the route with path '').
+    matcher: (segments) => (segments.length === 0 ? { consumed: [] } : null),
+    canMatch: [guestGuard],
+    loadComponent: () =>
+      import('./public/landing/landing.page').then(
+        (m) => m.LandingPage,
       ),
   },
   {
