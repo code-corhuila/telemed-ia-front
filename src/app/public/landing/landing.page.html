@@ -8,6 +8,7 @@
     <a class="nav-link nav-link--section" href="#como-funciona" (click)="scrollTo('como-funciona', $event)">
       Cómo funciona
     </a>
+    <a class="nav-link nav-link--section" href="#beneficios" (click)="scrollTo('beneficios', $event)">Beneficios</a>
     <a class="nav-link" routerLink="/auth/sign-in">Iniciar sesión</a>
     <a class="pill" routerLink="/auth/register">Crear cuenta</a>
   </nav>
@@ -72,4 +73,34 @@
       </figure>
     </div>
   </section>
+
+  <div class="band">
+    <section id="beneficios" class="section" aria-labelledby="benefits-title">
+      <div class="heading heading--split" appReveal>
+        <div>
+          <h2 id="benefits-title">Pensado para ti <br />y para tu médico.</h2>
+          <p class="sub">Menos tiempo explicando lo mismo, más tiempo de consulta para lo que importa.</p>
+        </div>
+        <img
+          class="benefits-visual"
+          src="assets/images/IA.png"
+          alt="Ilustración de información médica digital"
+          width="290"
+          height="210"
+        />
+      </div>
+
+      <ul class="benefits">
+        @for (benefit of benefits; track benefit.title) {
+          <li appReveal>
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><path [attr.d]="benefit.icon" /></svg>
+            </span>
+            <h3>{{ benefit.title }}</h3>
+            <p>{{ benefit.text }}</p>
+          </li>
+        }
+      </ul>
+    </section>
+  </div>
 </main>
