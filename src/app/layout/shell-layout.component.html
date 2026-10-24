@@ -234,6 +234,27 @@
           <span>Notificaciones</span>
         </span>
       }
+
+      <!-- ==================== -->
+      <!-- Admin navigation      -->
+      <!-- ==================== -->
+
+      @if (isAdmin()) {
+        <a
+          class="nav-item"
+          routerLink="/professionals"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ⚕
+          </span>
+
+          <span>Profesionales</span>
+        </a>
+      }
     </nav>
 
     <div class="sidebar__footer">
