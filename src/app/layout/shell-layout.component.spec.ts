@@ -98,4 +98,23 @@ describe('ShellLayoutComponent', () => {
     expect(element.querySelector('a[href="/appointment/professional"]')).toBeTruthy();
     expect(element.querySelector('a[href="/agent"]')).toBeFalsy();
   });
+
+  it('shows the professional administration only to an administrator', async () => {
+    const { element } = await renderShell('ADMIN');
+    const link = element.querySelector<HTMLAnchorElement>('a[href="/professionals"]');
+
+    expect(link).toBeTruthy();
+    expect(link?.textContent).toContain('Profesionales');
+    expect(element.textContent).toContain('Administrador');
+    expect(element.querySelector('a[href="/documents"]')).toBeFalsy();
+  });
+
+  it('hides the professional administration from patients and professionals', async () => {
+    for (const role of ['PATIENT', 'PROFESSIONAL']) {
+      TestBed.resetTestingModule();
+      const { element } = await renderShell(role);
+
+      expect(element.querySelector('a[href="/professionals"]')).toBeFalsy();
+    }
+  });
 });
