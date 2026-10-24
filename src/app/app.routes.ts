@@ -70,6 +70,13 @@ export const routes: Routes = [
             (m) => m.DOCUMENT_REMOTE_ROUTES,
           ),
       },
+      {
+        path: 'professionals',
+        loadChildren: () =>
+          import('./remotes/professional.remote').then(
+            (m) => m.PROFESSIONAL_REMOTE_ROUTES,
+          ),
+      },
             {
         path: 'consultation',
         loadChildren: () =>
