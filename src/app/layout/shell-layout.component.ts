@@ -63,8 +63,19 @@ export class ShellLayoutComponent {
         'PROFESSIONAL',
     );
 
+  protected readonly isAdmin =
+    computed(
+      () =>
+        this.currentRole() ===
+        'ADMIN',
+    );
+
   protected readonly roleLabel =
     computed(() => {
+      if (this.isAdmin()) {
+        return 'Administrador';
+      }
+
       if (this.isProfessional()) {
         return 'Profesional';
       }
@@ -78,6 +89,10 @@ export class ShellLayoutComponent {
 
   protected readonly roleDescription =
     computed(() => {
+      if (this.isAdmin()) {
+        return 'Cuenta de administración';
+      }
+
       if (this.isProfessional()) {
         return 'Cuenta profesional';
       }
