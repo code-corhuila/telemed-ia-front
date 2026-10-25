@@ -77,6 +77,13 @@ export const routes: Routes = [
             (m) => m.PROFESSIONAL_REMOTE_ROUTES,
           ),
       },
+      {
+        path: 'accounts',
+        loadChildren: () =>
+          import('./remotes/identity-admin.remote').then(
+            (m) => m.IDENTITY_ADMIN_REMOTE_ROUTES,
+          ),
+      },
             {
         path: 'consultation',
         loadChildren: () =>
