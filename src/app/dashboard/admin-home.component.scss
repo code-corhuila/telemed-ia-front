@@ -1,0 +1,95 @@
+// Same palette as the patient dashboard, so both homes read as one product.
+:host {
+  display: block;
+}
+
+.admin-home {
+  display: grid;
+  gap: 1.5rem;
+  color: #172b4d;
+}
+
+.admin-home__hero {
+  padding: 2rem 2.4rem;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #173b78, #2c6bed);
+  color: #fff;
+
+  h1 {
+    margin: 0 0 0.6rem;
+    font-size: 1.9rem;
+  }
+
+  p {
+    max-width: 60ch;
+    margin: 0;
+    color: #dbe8ff;
+    line-height: 1.6;
+  }
+}
+
+.admin-home__shortcuts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.25rem;
+}
+
+.shortcut {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  justify-items: start;
+  padding: 1.6rem;
+  border: 1px solid #dfe5ed;
+  border-radius: 18px;
+  background: #fff;
+
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin: 0 0 0.4rem;
+    color: #5f6b7d;
+    line-height: 1.55;
+  }
+}
+
+.shortcut__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 12px;
+  background: #edf4ff;
+  color: #2159c7;
+  font-size: 1.2rem;
+}
+
+.shortcut__action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1.1rem;
+  border-radius: 12px;
+  background: #2c6bed;
+  color: #fff;
+  font-weight: 650;
+  text-decoration: none;
+
+  &:hover {
+    background: #2159c7;
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(44, 107, 237, 0.4);
+    outline-offset: 2px;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-home__hero {
+    padding: 1.5rem;
+  }
+}

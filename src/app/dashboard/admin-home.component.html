@@ -1,0 +1,31 @@
+<section class="admin-home">
+  <header class="admin-home__hero">
+    <h1>Hola, {{ firstName() }}</h1>
+    <p>
+      Desde aquí gestionas quién usa TeleMed IA: las cuentas de la
+      plataforma y los profesionales que atienden.
+    </p>
+  </header>
+
+  <div class="admin-home__shortcuts">
+    <article class="shortcut">
+      <span class="shortcut__icon" aria-hidden="true">◉</span>
+      <h2>Cuentas</h2>
+      <p>
+        Busca cuentas por nombre, correo o documento, revisa su último
+        acceso y bloquea o restaura su acceso.
+      </p>
+      <a class="shortcut__action" routerLink="/accounts">Ir a cuentas</a>
+    </article>
+
+    <article class="shortcut">
+      <span class="shortcut__icon" aria-hidden="true">⚕</span>
+      <h2>Profesionales</h2>
+      <p>
+        Registra a los profesionales de salud y gestiona si su perfil
+        está activo para atender.
+      </p>
+      <a class="shortcut__action" routerLink="/professionals">Ir a profesionales</a>
+    </article>
+  </div>
+</section>
