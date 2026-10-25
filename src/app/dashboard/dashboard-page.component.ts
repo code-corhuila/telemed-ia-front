@@ -1,8 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
+  inject,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+
+import { SessionService } from '../core/auth/session.service';
+import { AdminHomeComponent } from './admin-home.component';
 
 interface DashboardStat {
   readonly label: string;
@@ -19,12 +24,19 @@ interface UpcomingAppointment {
 @Component({
   selector: 'app-dashboard-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, AdminHomeComponent],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardPageComponent {
+  private readonly session = inject(SessionService);
+
+  // An administrator gets the administration shortcuts, not the patient dashboard.
+  protected readonly isAdmin = computed(
+    () => this.session.getRole() === 'ADMIN',
+  );
+
   protected readonly patientName = 'Paciente';
 
   protected readonly stats: readonly DashboardStat[] = [
