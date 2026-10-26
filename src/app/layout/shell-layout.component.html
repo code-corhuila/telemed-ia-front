@@ -141,9 +141,10 @@
           <span>Mi perfil</span>
         </a>
 
-        <span
-          class="nav-item nav-item--disabled"
-          aria-disabled="true"
+        <a
+          class="nav-item"
+          routerLink="/notifications"
+          routerLinkActive="nav-item--active"
         >
           <span
             class="nav-item__icon"
@@ -153,7 +154,7 @@
           </span>
 
           <span>Notificaciones</span>
-        </span>
+        </a>
       }
 
       <!-- ==================== -->
@@ -220,9 +221,10 @@
           <span>Mi perfil</span>
         </span>
 
-        <span
-          class="nav-item nav-item--disabled"
-          aria-disabled="true"
+        <a
+          class="nav-item"
+          routerLink="/notifications"
+          routerLinkActive="nav-item--active"
         >
           <span
             class="nav-item__icon"
@@ -232,7 +234,7 @@
           </span>
 
           <span>Notificaciones</span>
-        </span>
+        </a>
       }
 
       <!-- ==================== -->
@@ -344,14 +346,7 @@
         </div>
 
         <div class="topbar__actions">
-          <button
-            class="icon-button"
-            type="button"
-            aria-label="Notificaciones"
-            title="Notificaciones"
-          >
-            ♢
-          </button>
+          <app-notifications-bell />
 
           @if (isPatient()) {
             <a
