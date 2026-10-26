@@ -84,6 +84,13 @@ export const routes: Routes = [
             (m) => m.IDENTITY_ADMIN_REMOTE_ROUTES,
           ),
       },
+      {
+        path: 'notifications',
+        loadChildren: () =>
+          import('./remotes/notifications.remote').then(
+            (m) => m.NOTIFICATIONS_REMOTE_ROUTES,
+          ),
+      },
             {
         path: 'consultation',
         loadChildren: () =>
