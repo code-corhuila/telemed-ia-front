@@ -13,6 +13,7 @@ import {
 
 import { SessionTermination } from '../core/auth/session-termination.service';
 import { SessionService } from '../core/auth/session.service';
+import { NotificationsBellComponent } from './notifications-bell.component';
 
 @Component({
   selector: 'app-shell-layout',
@@ -21,6 +22,7 @@ import { SessionService } from '../core/auth/session.service';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
+    NotificationsBellComponent,
   ],
   templateUrl:
     './shell-layout.component.html',

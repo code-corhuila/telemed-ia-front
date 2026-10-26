@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
+import { EMPTY } from 'rxjs';
 import { describe, expect, it } from 'vitest';
 
 import { SessionService } from '../core/auth/session.service';
+import { ApiClientService } from '../core/http/api-client.service';
 import { ShellLayoutComponent } from './shell-layout.component';
 
 /** FR-012: the Accounts entry of the Administration menu (identity portal). */
@@ -11,6 +13,7 @@ async function renderShell(role: string) {
     imports: [ShellLayoutComponent],
     providers: [
       provideRouter([]),
+      { provide: ApiClientService, useValue: { get: () => EMPTY } },
       {
         provide: SessionService,
         useValue: { getRole: () => role, getName: () => 'Persona de prueba', signOut: () => undefined },
