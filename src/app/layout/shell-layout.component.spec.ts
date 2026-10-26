@@ -1,9 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
+import { EMPTY } from 'rxjs';
 import { describe, expect, it } from 'vitest';
 
 import { SessionService } from '../core/auth/session.service';
+import { ApiClientService } from '../core/http/api-client.service';
 import { ShellLayoutComponent } from './shell-layout.component';
 
 @Component({ standalone: true, template: '' })
@@ -18,6 +20,8 @@ async function renderShell(role: string | null = 'PATIENT') {
       provideRouter([
         { path: 'agent', component: AgentStubComponent },
       ]),
+      // The topbar bell reads the unread count (HU-17).
+      { provide: ApiClientService, useValue: { get: () => EMPTY } },
       {
         provide: SessionService,
         useValue: {
