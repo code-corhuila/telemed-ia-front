@@ -22,7 +22,9 @@ RUN rm -f /usr/share/nginx/html/index.html /usr/share/nginx/html/50x.html
 
 # Angular 21 puts the real bundle inside `browser/`.
 COPY --from=build /workspace/dist/telemed-ia-front/browser /usr/share/nginx/html
-COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+# deploy/nginx.conf is a full configuration (events and http blocks), so it replaces the main
+# nginx.conf; under conf.d/ it is included inside http and nginx refuses to start.
+COPY deploy/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
