@@ -2,7 +2,10 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { describe, expect, it } from 'vitest';
 
+import { of } from 'rxjs';
+
 import { SessionService } from '../core/auth/session.service';
+import { ApiClientService } from '../core/http/api-client.service';
 import { DashboardPageComponent } from './dashboard-page.component';
 
 async function renderHome(role: string) {
@@ -10,7 +13,11 @@ async function renderHome(role: string) {
     imports: [DashboardPageComponent],
     providers: [
       provideRouter([]),
-      { provide: SessionService, useValue: { getRole: () => role, getName: () => 'Laura Gómez' } },
+      {
+        provide: SessionService,
+        useValue: { getRole: () => role, getName: () => 'Laura Gómez', getClaims: () => ({ role }) },
+      },
+      { provide: ApiClientService, useValue: { getWithParams: () => of({ data: [], meta: {} }) } },
     ],
   }).compileComponents();
 
