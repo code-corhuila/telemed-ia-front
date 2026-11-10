@@ -85,4 +85,47 @@ describe('LandingPage', () => {
 
     expect(page.querySelector('nav a[href="#como-funciona"]')?.textContent).toContain('Cómo funciona');
   });
+
+  it('lists what patients and doctors get from the platform', () => {
+    const page = render();
+    const titles = [...page.querySelectorAll('#beneficios li h3')].map((h) => h.textContent?.trim());
+
+    expect(page.querySelector('#beneficios h2')?.textContent?.replace(/\s+/g, ' ')).toContain(
+      'Pensado para ti y para tu médico.',
+    );
+    expect(titles).toEqual([
+      'Disponible a toda hora',
+      'Agenda sin llamadas',
+      'Tu médico llega preparado',
+      'La atención adecuada',
+      'Todo en un solo lugar',
+      'Privacidad y seguridad',
+    ]);
+    expect(page.querySelector('#beneficios img')?.getAttribute('alt')).toBe(
+      'Ilustración de información médica digital',
+    );
+  });
+
+  it('links the top bar to the benefits', () => {
+    const page = render();
+
+    expect(page.querySelector('nav a[href="#beneficios"]')?.textContent).toContain('Beneficios');
+  });
+
+  it('states the medical responsibility notice and the emergency line', () => {
+    const notice = render().querySelector('[role="note"]')?.textContent ?? '';
+
+    expect(notice).toContain('Aviso de responsabilidad médica');
+    expect(notice).toContain('no diagnostica enfermedades');
+    expect(notice).toContain('no reemplaza al profesional de la salud');
+    expect(notice).toContain('llama al 123');
+  });
+
+  it('ends with a footer that names the project and the current year, without repeating links', () => {
+    const footer = render().querySelector('footer')!;
+
+    expect(footer.textContent).toContain('proyecto académico de Ingeniería de Sistemas');
+    expect(footer.textContent).toContain(String(new Date().getFullYear()));
+    expect(footer.querySelectorAll('a').length).toBe(0);
+  });
 });

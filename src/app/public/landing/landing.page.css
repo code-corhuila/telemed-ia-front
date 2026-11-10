@@ -313,6 +313,166 @@ h2 {
   border-radius: 50%;
 }
 
+/* Benefits: a light blue band with white cards */
+.band {
+  margin-top: 96px;
+  padding-bottom: 96px;
+  background: linear-gradient(180deg, #eef5ff 0%, #f5f9ff 100%);
+  border-block: 1px solid var(--tm-line);
+}
+
+.band .section {
+  padding-top: 88px;
+}
+
+.heading--split {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: none;
+}
+
+.heading--split > div {
+  max-width: 36rem;
+}
+
+.benefits-visual {
+  width: min(290px, 100%);
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px -26px rgba(14, 58, 107, 0.45);
+}
+
+.benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.benefits li {
+  padding: 22px 24px;
+  background: var(--tm-white);
+  border: 1px solid var(--tm-line);
+  border-radius: 24px;
+  transition: transform 0.4s var(--tm-ease), border-color 0.3s, box-shadow 0.3s;
+}
+
+.benefits li:hover {
+  border-color: var(--tm-blue-bright);
+  box-shadow: 0 16px 32px -22px rgba(14, 58, 107, 0.4);
+  transform: translateY(-4px);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 14px;
+  background: var(--tm-sky);
+  border-radius: 12px;
+}
+
+.icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--tm-blue);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.benefits h3 {
+  margin: 0 0 6px;
+  color: var(--tm-ink);
+  font-size: 1.12rem;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+
+.benefits li:hover h3 {
+  color: var(--tm-blue);
+}
+
+.benefits p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Medical notice: always visible, never fine print. */
+.notice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: start;
+  margin: 96px var(--tm-edge) 0;
+  padding: 28px 32px;
+  color: var(--tm-ink);
+  background: #f3f8ff;
+  border: 1px solid var(--tm-line);
+  border-radius: 24px;
+}
+
+.notice-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--tm-white);
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 700;
+  background: var(--tm-blue);
+  border-radius: 50%;
+}
+
+.notice h2 {
+  font-size: 1.18rem;
+  letter-spacing: -0.01em;
+}
+
+.notice p {
+  max-width: 60rem;
+  margin: 8px 0 0;
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--tm-text);
+}
+
+.notice strong {
+  color: var(--tm-ink);
+}
+
+/* Footer */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-top: 96px;
+  padding: 36px var(--tm-edge);
+  color: #d6e4f7;
+  font-size: 0.98rem;
+  background: #1b4a85;
+}
+
+footer p {
+  margin: 0;
+}
+
+.brand--light {
+  color: var(--tm-white);
+}
+
 /* Scroll reveal (see RevealDirective) */
 [appReveal] {
   opacity: 0;
@@ -360,6 +520,25 @@ h2 {
 
   .steps-visual {
     margin: 0 auto;
+  }
+
+  .benefits {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .benefits-visual {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .benefits,
+  .notice {
+    grid-template-columns: 1fr;
+  }
+
+  .notice {
+    padding: 24px;
   }
 }
 
