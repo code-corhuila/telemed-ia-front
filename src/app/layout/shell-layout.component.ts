@@ -106,7 +106,7 @@ export class ShellLayoutComponent {
   protected signOut(): void {
     this.session.signOut();
     void this.router.navigateByUrl(
-      '/sign-in',
+      '/auth/sign-in',
     );
   }
 }
