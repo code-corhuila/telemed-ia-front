@@ -40,20 +40,9 @@ export class SessionService {
     },
   );
 
-  readonly userId = computed<number | null>(
-    () => {
-      const sub = this.claims()?.sub;
-
-      if (!sub) {
-        return null;
-      }
-
-      const id = Number(sub);
-
-      return Number.isInteger(id) && id > 0
-        ? id
-        : null;
-    },
+  // identity-api issues the account UUID as `sub`.
+  readonly userId = computed<string | null>(
+    () => this.claims()?.sub || null,
   );
 
   readonly role = computed<string | null>(
@@ -75,7 +64,7 @@ export class SessionService {
     return this.claims();
   }
 
-  getUserId(): number | null {
+  getUserId(): string | null {
     return this.userId();
   }
 
