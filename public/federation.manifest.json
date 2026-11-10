@@ -6,5 +6,6 @@
   "document": "http://localhost:4204/remoteEntry.json",
   "consultation": "http://localhost:4205/remoteEntry.json",
   "identity": "http://localhost:4206/remoteEntry.json",
-  "professional": "http://localhost:4207/remoteEntry.json"
+  "professional": "http://localhost:4207/remoteEntry.json",
+  "notifications": "http://localhost:4208/remoteEntry.json"
 }
