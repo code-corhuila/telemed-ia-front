@@ -5,6 +5,9 @@
   </a>
 
   <nav aria-label="Principal">
+    <a class="nav-link nav-link--section" href="#como-funciona" (click)="scrollTo('como-funciona', $event)">
+      Cómo funciona
+    </a>
     <a class="nav-link" routerLink="/auth/sign-in">Iniciar sesión</a>
     <a class="pill" routerLink="/auth/register">Crear cuenta</a>
   </nav>
@@ -36,4 +39,37 @@
       </figure>
     </section>
   </div>
+
+  <section id="como-funciona" class="section" aria-labelledby="steps-title">
+    <div class="heading" appReveal>
+      <h2 id="steps-title">Cómo funciona</h2>
+      <p class="sub">De tu registro a tu consulta, en cinco pasos.</p>
+    </div>
+
+    <div class="steps-layout">
+      <ol class="steps">
+        @for (step of steps; track step.title) {
+          <li appReveal>
+            <span class="num">0{{ $index + 1 }}</span>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.text }}</p>
+          </li>
+        }
+      </ol>
+
+      <figure class="steps-visual" appReveal>
+        <img
+          src="assets/images/assistant-ai.png"
+          alt="Pantalla del asistente conversando con un paciente"
+          width="587"
+          height="395"
+        />
+        <!-- Covers the image's lower card, which shows a diagnosis: the assistant never gives one. -->
+        <figcaption class="summary-chip">
+          <span class="check" aria-hidden="true">✓</span>
+          Resumen listo para tu médico
+        </figcaption>
+      </figure>
+    </div>
+  </section>
 </main>
