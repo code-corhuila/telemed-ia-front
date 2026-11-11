@@ -7,6 +7,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { SessionService } from '../core/auth/session.service';
+import { firstName } from './first-name';
 
 /**
  * Home of an administrator: shortcuts to the administration remotes
@@ -25,6 +26,6 @@ export class AdminHomeComponent {
   private readonly session = inject(SessionService);
 
   protected readonly firstName = computed(
-    () => this.session.getName().trim().split(/\s+/)[0] ?? '',
+    () => firstName(this.session.getName()),
   );
 }
