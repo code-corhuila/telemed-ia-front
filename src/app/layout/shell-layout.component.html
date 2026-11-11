@@ -181,6 +181,9 @@
           class="nav-item"
           routerLink="/appointment/professional"
           routerLinkActive="nav-item--active"
+          [routerLinkActiveOptions]="{
+            exact: true
+          }"
         >
           <span
             class="nav-item__icon"
@@ -207,9 +210,10 @@
           <span>Consultas asignadas</span>
         </a>
 
-        <span
-          class="nav-item nav-item--disabled"
-          aria-disabled="true"
+        <a
+          class="nav-item"
+          routerLink="/professionals/me"
+          routerLinkActive="nav-item--active"
         >
           <span
             class="nav-item__icon"
@@ -219,7 +223,7 @@
           </span>
 
           <span>Mi perfil</span>
-        </span>
+        </a>
 
         <a
           class="nav-item"
