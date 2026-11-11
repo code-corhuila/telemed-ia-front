@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 import { SessionService } from '../core/auth/session.service';
 import { ApiClientService } from '../core/http/api-client.service';
 import { AdminHomeComponent } from './admin-home.component';
+import { firstName } from './first-name';
 import {
   AppointmentPage,
   formatAppointmentStart,
@@ -55,7 +56,7 @@ export class DashboardPageComponent {
   protected readonly isAdmin = this.role === 'ADMIN';
   protected readonly isProfessional = this.role === 'PROFESSIONAL';
 
-  protected readonly firstName = this.session.getName().trim().split(/\s+/)[0] || 'Usuario';
+  protected readonly firstName = firstName(this.session.getName()) || 'Usuario';
   protected readonly appointmentsLink = this.isProfessional
     ? '/appointment/professional'
     : '/appointment';
