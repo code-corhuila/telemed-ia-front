@@ -141,9 +141,10 @@
           <span>Mi perfil</span>
         </a>
 
-        <span
-          class="nav-item nav-item--disabled"
-          aria-disabled="true"
+        <a
+          class="nav-item"
+          routerLink="/notifications"
+          routerLinkActive="nav-item--active"
         >
           <span
             class="nav-item__icon"
@@ -153,7 +154,7 @@
           </span>
 
           <span>Notificaciones</span>
-        </span>
+        </a>
       }
 
       <!-- ==================== -->
@@ -180,6 +181,9 @@
           class="nav-item"
           routerLink="/appointment/professional"
           routerLinkActive="nav-item--active"
+          [routerLinkActiveOptions]="{
+            exact: true
+          }"
         >
           <span
             class="nav-item__icon"
@@ -206,9 +210,10 @@
           <span>Consultas asignadas</span>
         </a>
 
-        <span
-          class="nav-item nav-item--disabled"
-          aria-disabled="true"
+        <a
+          class="nav-item"
+          routerLink="/professionals/me"
+          routerLinkActive="nav-item--active"
         >
           <span
             class="nav-item__icon"
@@ -218,11 +223,12 @@
           </span>
 
           <span>Mi perfil</span>
-        </span>
+        </a>
 
-        <span
-          class="nav-item nav-item--disabled"
-          aria-disabled="true"
+        <a
+          class="nav-item"
+          routerLink="/notifications"
+          routerLinkActive="nav-item--active"
         >
           <span
             class="nav-item__icon"
@@ -232,7 +238,43 @@
           </span>
 
           <span>Notificaciones</span>
-        </span>
+        </a>
+      }
+
+      <!-- ==================== -->
+      <!-- Admin navigation      -->
+      <!-- ==================== -->
+
+      @if (isAdmin()) {
+        <a
+          class="nav-item"
+          routerLink="/professionals"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ⚕
+          </span>
+
+          <span>Profesionales</span>
+        </a>
+
+        <a
+          class="nav-item"
+          routerLink="/accounts"
+          routerLinkActive="nav-item--active"
+        >
+          <span
+            class="nav-item__icon"
+            aria-hidden="true"
+          >
+            ◉
+          </span>
+
+          <span>Cuentas</span>
+        </a>
       }
     </nav>
 
@@ -308,14 +350,7 @@
         </div>
 
         <div class="topbar__actions">
-          <button
-            class="icon-button"
-            type="button"
-            aria-label="Notificaciones"
-            title="Notificaciones"
-          >
-            ♢
-          </button>
+          <app-notifications-bell />
 
           @if (isPatient()) {
             <a

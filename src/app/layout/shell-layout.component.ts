@@ -11,7 +11,9 @@ import {
   RouterOutlet,
 } from '@angular/router';
 
+import { SessionTermination } from '../core/auth/session-termination.service';
 import { SessionService } from '../core/auth/session.service';
+import { NotificationsBellComponent } from './notifications-bell.component';
 
 @Component({
   selector: 'app-shell-layout',
@@ -20,6 +22,7 @@ import { SessionService } from '../core/auth/session.service';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
+    NotificationsBellComponent,
   ],
   templateUrl:
     './shell-layout.component.html',
@@ -34,6 +37,9 @@ export class ShellLayoutComponent {
 
   private readonly router =
     inject(Router);
+
+  private readonly termination =
+    inject(SessionTermination);
 
   protected readonly currentName =
     computed(() =>
@@ -59,8 +65,19 @@ export class ShellLayoutComponent {
         'PROFESSIONAL',
     );
 
+  protected readonly isAdmin =
+    computed(
+      () =>
+        this.currentRole() ===
+        'ADMIN',
+    );
+
   protected readonly roleLabel =
     computed(() => {
+      if (this.isAdmin()) {
+        return 'Administrador';
+      }
+
       if (this.isProfessional()) {
         return 'Profesional';
       }
@@ -74,6 +91,10 @@ export class ShellLayoutComponent {
 
   protected readonly roleDescription =
     computed(() => {
+      if (this.isAdmin()) {
+        return 'Cuenta de administración';
+      }
+
       if (this.isProfessional()) {
         return 'Cuenta profesional';
       }
@@ -104,9 +125,9 @@ export class ShellLayoutComponent {
   }
 
   protected signOut(): void {
-    this.session.signOut();
+    this.termination.end();
     void this.router.navigateByUrl(
-      '/sign-in',
+      '/auth/sign-in',
     );
   }
 }

@@ -1,9 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
+import { EMPTY } from 'rxjs';
 import { describe, expect, it } from 'vitest';
 
 import { SessionService } from '../core/auth/session.service';
+import { ApiClientService } from '../core/http/api-client.service';
 import { ShellLayoutComponent } from './shell-layout.component';
 
 @Component({ standalone: true, template: '' })
@@ -18,6 +20,8 @@ async function renderShell(role: string | null = 'PATIENT') {
       provideRouter([
         { path: 'agent', component: AgentStubComponent },
       ]),
+      // The topbar bell reads the unread count (HU-17).
+      { provide: ApiClientService, useValue: { get: () => EMPTY } },
       {
         provide: SessionService,
         useValue: {
@@ -97,5 +101,24 @@ describe('ShellLayoutComponent', () => {
     expect(element.querySelector('a[href="/consultation/professional"]')).toBeTruthy();
     expect(element.querySelector('a[href="/appointment/professional"]')).toBeTruthy();
     expect(element.querySelector('a[href="/agent"]')).toBeFalsy();
+  });
+
+  it('shows the professional administration only to an administrator', async () => {
+    const { element } = await renderShell('ADMIN');
+    const link = element.querySelector<HTMLAnchorElement>('a[href="/professionals"]');
+
+    expect(link).toBeTruthy();
+    expect(link?.textContent).toContain('Profesionales');
+    expect(element.textContent).toContain('Administrador');
+    expect(element.querySelector('a[href="/documents"]')).toBeFalsy();
+  });
+
+  it('hides the professional administration from patients and professionals', async () => {
+    for (const role of ['PATIENT', 'PROFESSIONAL']) {
+      TestBed.resetTestingModule();
+      const { element } = await renderShell(role);
+
+      expect(element.querySelector('a[href="/professionals"]')).toBeFalsy();
+    }
   });
 });

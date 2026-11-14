@@ -1,7 +1,11 @@
 {
+  "shell": "http://localhost:4200/remoteEntry.json",
   "patient": "http://localhost:4201/remoteEntry.json",
   "agent": "http://localhost:4202/remoteEntry.json",
   "appointment": "http://localhost:4203/remoteEntry.json",
   "document": "http://localhost:4204/remoteEntry.json",
-  "consultation": "http://localhost:4205/remoteEntry.json"
+  "consultation": "http://localhost:4205/remoteEntry.json",
+  "identity": "http://localhost:4206/remoteEntry.json",
+  "professional": "http://localhost:4207/remoteEntry.json",
+  "notifications": "http://localhost:4208/remoteEntry.json"
 }
